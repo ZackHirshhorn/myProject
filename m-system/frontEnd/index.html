@@ -487,9 +487,10 @@
         </div>
     </div>
 
-    <script>
+    <script type="module">
+        import { apiBaseUrl } from './js/config.js';
         let currentTable = 1;
-        const apiUrl = "https://flask-backend-tjoh.onrender.com/shifts";
+        const apiUrl = `${apiBaseUrl}/shifts`;
         let currentDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Jerusalem' }));
         let weekStart = new Date(currentDate);
         let buttonsEnabled = true;
@@ -806,7 +807,16 @@
             `;
         }
 
-async function sendShiftData(selectElement, date, shiftType) {
+        function logout() {
+            fetch(apiUrl + '/logout', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            _string(selectElement, date, shiftType) {
             const selectedValue = selectElement.value;
             const jwt = localStorage.getItem('token');
             console.log(jwt)
@@ -838,7 +848,7 @@ async function sendShiftData(selectElement, date, shiftType) {
         }
 
         function logout() {
-            fetch('http://127.0.0.1:5000/shifts/logout', {
+            fetch(apiUrl + '/logout', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,

@@ -495,7 +495,8 @@ table-responsive {
     </div>
   </div>
 
-  <script>
+  <script type="module">
+    import { apiBaseUrl } from './js/config.js';
     const monthNames = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
     let currentYear = new Date().getFullYear();
     let currentMonth = new Date().getMonth();
@@ -534,7 +535,7 @@ table-responsive {
       let events = [];
       try {
         const query = selectedBranch ? `?branch_id=${selectedBranch}` : '';
-        const res = await fetch(`https://flask-backend-tjoh.onrender.com/calendar/events${query}`, {
+        const res = await fetch(`${apiBaseUrl}/calendar/events${query}`, {
           headers: { 'Authorization': 'Bearer ' + token }
         });
         const data = await res.json();
@@ -632,7 +633,7 @@ if (row.children.length > 0) {
       if (!token) return;
 
       try {
-        const res = await fetch('https://flask-backend-tjoh.onrender.com/calendar/profile', {
+        const res = await fetch(`${apiBaseUrl}/calendar/profile`, {
           headers: { 'Authorization': 'Bearer ' + token }
         });
 
@@ -656,7 +657,7 @@ if (row.children.length > 0) {
       if (!select) return;
 
       try {
-        const res = await fetch('https://flask-backend-tjoh.onrender.com/calendar/branches', {
+        const res = await fetch(`${apiBaseUrl}/calendar/branches`, {
           headers: { 'Authorization': 'Bearer ' + token }
         });
 

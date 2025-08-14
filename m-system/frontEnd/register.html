@@ -96,7 +96,8 @@
     <p>כבר רשום? <a href="index.html">התחבר כאן</a></p>
 </div>
 
-<script>
+<script type="module">
+    import { apiBaseUrl } from './js/config.js';
     async function registerUser() {
         const data = {
             first_name: document.getElementById('first_name').value,
@@ -109,7 +110,7 @@
         };
 
         try {
-            const response = await fetch('http://localhost:5000/shifts/register', {
+            const response = await fetch(`${apiBaseUrl}/shifts/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

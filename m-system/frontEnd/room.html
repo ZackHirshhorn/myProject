@@ -310,11 +310,10 @@
     </div>
   </div>
 
-<!-- הקוד נשאר זהה, רק מעדכנים את החלק של הטיפול בסלוטים בחדר ברוש -->
-<!-- קוד מעודכן לצד לקוח - התאמה לשינויים בשרת -->
-<script>
-    // Updated client-side code for room reservation system
-const apiBase = 'https://flask-backend-tjoh.onrender.com';
+<script type="module">
+import { apiBaseUrl } from './js/config.js';
+// Updated client-side code for room reservation system
+const apiBase = apiBaseUrl;
 const hours = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'];
 const rooms = ['ברוש', 'אורן', 'דקל'];
 let currentDate = new Date();

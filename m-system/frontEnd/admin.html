@@ -705,7 +705,8 @@
       </div>
     </div>
   </div>
-<script>
+<script type="module">
+  import { apiBaseUrl } from './js/config.js';
   document.addEventListener("DOMContentLoaded", function() {
     // Initialize the page
     getUserDetails().then(() => {
@@ -719,7 +720,7 @@
     document.getElementById('saveChangesButton').addEventListener('click', saveUserChanges);
   });
 
-  const apiUrl = "https://flask-backend-tjoh.onrender.com/admin";
+  const apiUrl = `${apiBaseUrl}/admin`;
   let currentUser = null;
   let allUsers = [];
 
@@ -980,7 +981,7 @@
     };
 
     try {
-      const res = await fetch(`https://flask-backend-tjoh.onrender.com/calendar/event`, {
+      const res = await fetch(`${apiBaseUrl}/calendar/event`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -1196,7 +1197,7 @@ async function saveUserChanges() {
     tbody.innerHTML = '<tr><td colspan="6" class="text-center py-4"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">טוען...</span></div></td></tr>';
 
     try {
-      const res = await fetch("https://flask-backend-tjoh.onrender.com/admin/events_with_participants", {
+      const res = await fetch("http://127.0.0.1:5000/admin/events_with_participants", {
         headers: {
           'Authorization': 'Bearer ' + token
         }

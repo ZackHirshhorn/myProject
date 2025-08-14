@@ -325,8 +325,9 @@
     </ul>
   </div>
 
-  <script>
-    const apiUrl = "https://flask-backend-tjoh.onrender.com";
+  <script type="module">
+    import { apiBaseUrl } from './js/config.js';
+    const apiUrl = apiBaseUrl;
     const participantApi = `${apiUrl}/api/participants`;
     let isLoading = false;
 
